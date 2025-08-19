@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: nginx-rollout-ref
+  annotations:
+    cast.ai/scalingPolicyName: "default"
+    cast.ai/vertical: |
+      optimization: on
+    cast.ai/horizontal: |
+      optimization: on
+      minReplicas: 2
+      maxReplicas: 6
+      scaleDown:
+        stabilizationWindow: 5m
+spec:
+  workloadRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment
