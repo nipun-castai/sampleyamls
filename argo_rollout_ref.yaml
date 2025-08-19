@@ -2,6 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Rollout
 metadata:
   name: nginx-rollout-ref
+  namespace: default  
   annotations:
     cast.ai/scalingPolicyName: "default"
     cast.ai/vertical: |
@@ -16,4 +17,4 @@ spec:
   workloadRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: nginx-deployment
+    name: nginx-deployment-argocd
