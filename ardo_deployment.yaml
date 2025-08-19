@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment-argocd-2
+  namespace: default                # 👈 ensure namespace is set (or match your Argo CD Application)
+  labels:
+    app: nginx
+  annotations:                      # 👈 add Cast AI annotations here
+    cast.ai/scalingPolicyName: "argo-test"
+    cast.ai/vertical: |
+      optimization: on
+    cast.ai/horizontal: |
+      optimization: on
+      minReplicas: 2
+      maxReplicas: 6
+      scaleDown:
+        stabilizationWindow: 5m
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.21
+        ports:
+        - containerPort: 80
