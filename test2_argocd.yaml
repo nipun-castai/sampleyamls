@@ -1,0 +1,10 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: nginx-rollout-ref-2
+  namespace: default
+spec:
+  workloadRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: nginx-deployment-argocd-2
