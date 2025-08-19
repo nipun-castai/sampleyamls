@@ -4,7 +4,7 @@ metadata:
   name: nginx-rollout-ref
   namespace: default  
   annotations:
-    cast.ai/scalingPolicyName: "default"
+    cast.ai/scalingPolicyName: "argo-test"
     cast.ai/vertical: |
       optimization: on
     cast.ai/horizontal: |
